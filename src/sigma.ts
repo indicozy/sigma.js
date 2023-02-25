@@ -1228,11 +1228,15 @@ export default class Sigma<GraphType extends Graph = Graph> extends TypedEventEm
     // TODO: improve this heuristic or move to the captor itself?
     // TODO: deal with the touch captor here as well
     const mouseCaptor = this.mouseCaptor;
+    const touchCaptor = this.touchCaptor;
+
+    // TODO: add draggedEvents for touchCaptor?
     const moving =
       this.camera.isAnimated() ||
       mouseCaptor.isMoving ||
       mouseCaptor.draggedEvents ||
-      mouseCaptor.currentWheelDirection;
+      mouseCaptor.currentWheelDirection ||
+      touchCaptor.isMoving;
 
     // Then we need to extract a matrix from the camera
     const cameraState = this.camera.getState();

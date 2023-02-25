@@ -210,6 +210,9 @@ export default class TouchCaptor extends Captor<TouchCaptorEvents> {
       this.isMoving = false;
     }, DRAG_TIMEOUT);
 
+    const touchCoords = getTouchCoords(e, this.container);
+    if (touchCoords.sigmaDefaultPrevented) return;
+
     const camera = this.renderer.getCamera();
     const startCameraState = this.startCameraState as CameraState;
 

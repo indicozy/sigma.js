@@ -79,10 +79,17 @@ export function getTouchesArray(touches: TouchList): Touch[] {
  * @return {object}
  */
 export function getTouchCoords(e: TouchEvent, dom: HTMLElement): TouchCoords {
-  return {
+  const res: TouchCoords = {
     touches: getTouchesArray(e.touches).map((touch) => getPosition(touch, dom)),
+
+    sigmaDefaultPrevented: false,
+    preventSigmaDefault(): void {
+      res.sigmaDefaultPrevented = true;
+    },
     original: e,
   };
+
+  return res;
 }
 
 /**

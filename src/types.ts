@@ -44,6 +44,8 @@ export interface WheelCoords extends MouseCoords {
 }
 
 export interface TouchCoords {
+  sigmaDefaultPrevented: boolean;
+  preventSigmaDefault(): void;
   touches: Coordinates[];
   original: TouchEvent;
 }
